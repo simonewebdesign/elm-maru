@@ -7,3 +7,11 @@ server/*.ez
 
 # Client (Elm)
 client/elm-stuff
+client/elm.js
+client/build
+client/bin
+client/interop/env.js
+
+# Other
+.idea
+.DS_STORE
