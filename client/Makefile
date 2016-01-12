@@ -16,7 +16,7 @@ else
 	WELLINGTON_URL = "https://github.com/wellington/wellington/releases/download/v${WELLINGTON_VERSION}/wt_v${WELLINGTON_VERSION}_linux_amd64.tar.gz"
 endif
 
-all: interop/translation-names.js build build/main.js build/main.css build/index.html build/interop.js build/*.svg
+all: build build/main.js build/main.css build/index.html
 
 build:
 	mkdir -p build
@@ -70,3 +70,6 @@ watch:
 								-p 'index.html' -t build/index.html \
 								-p 'interop/*.js' -t build/interop.js \
 								-p 'images/*' -t build/images
+
+clean:
+	rm -Rf build/
