@@ -1,7 +1,7 @@
 {
     "version": "0.1.0",
     "summary": "Elm client",
-    "repository": "https://github.com/simonewebdesign/elm_maru.git",
+    "repository": "https://github.com/simonewebdesign/elm-maru.git",
     "license": "BSD3",
     "source-directories": [
         "src"
