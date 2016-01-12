@@ -1,0 +1,113 @@
+@import "bootstrap/scss/bootstrap";
+
+html,
+body,
+body > div:first-of-type,
+main {
+  height: 100% !important;
+}
+
+div > main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.form-signin {
+  margin: auto;
+
+  max-width: 20rem;
+  padding: 15px 35px 45px;
+}
+
+.form-signin img,
+.form-signin button,
+.form-signin .title {
+  margin-bottom: 1.25rem;
+}
+
+.form-signin .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+
+  &:focus {
+    z-index: 2;
+  }
+}
+
+.form-signin .title {
+  font-size: $font-size-h6;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 20px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-signin .btn-login {
+  margin: auto;
+  width: auto;
+  min-width: 50%;
+}
+
+.form-signin .forgot-password {
+  background-color: $gray-light;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 1rem 0;
+}
+
+.form-signin .forgot-password-link {
+  font-size: $font-size-sm;
+  color: #fff;
+}
+
+
+.debug {
+  right: 2%;
+  top: 1%;
+  position: fixed;
+  width: 2rem;
+  height: 2rem;
+  background-color: #929ba2;
+  color: #929ba2;
+  overflow: hidden;
+  cursor: pointer;
+  font-size: $font-size-xs;
+
+  &:hover {
+    width: 20rem;
+    height: auto;
+    color: black;
+  }
+}
+
+
+/* DESKTOP BROWSERS */
+@include media-breakpoint-up(sm) {
+  body {
+    background-color: $gray-light;
+  }
+
+  .form-signin {
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0.2rem 0 rgba(0, 0, 0, .1);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
