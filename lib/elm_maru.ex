@@ -9,8 +9,10 @@ defmodule ElmMaru.Router.Homepage do
   use Maru.Router
 
   get "/api" do
-    conn |> json(%{hello: :world})
-      # Plug.Conn.send_resp(conn, 200, "hello")
+    {:ok, binary} = File.read("lib/api-response.json")
+    result = binary |> Poison.decode!
+
+    conn |> json(result)
   end
 end
 

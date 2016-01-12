@@ -27,6 +27,8 @@ defmodule ElmMaru.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [ {:maru, "~> 0.8"} ]
+    [ {:maru, "~> 0.8"},
+      {:poison, "~> 1.5"}
+    ]
   end
 end
