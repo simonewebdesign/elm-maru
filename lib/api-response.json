@@ -1,0 +1,871 @@
+{
+  "configuration": {
+    "path": [
+      "v1_report"
+    ],
+    "sections": [
+      {
+        "template": "default",
+        "short_name": "v1_products_involved",
+        "label": "Products involved",
+        "components": [
+          {
+            "default_value": [
+              
+            ],
+            "label_inside_input": true,
+            "short_name": "product_names",
+            "add_button_label": "Add",
+            "label": "Enter Product Names",
+            "label_visible": true,
+            "components": [
+              
+            ],
+            "path": [
+              "v1_report",
+              "v1_products_involved",
+              "product_names"
+            ],
+            "position": 1,
+            "validation": {
+              "short_name": "products_involved_add",
+              "required": false,
+              "label": "Products involved validation",
+              "maxlength": 70,
+              "scope": "value_in_collection",
+              "type": "validation"
+            },
+            "type": "TagsInput",
+            "placeholder_label": "Enter Product Names"
+          }
+        ],
+        "path": [
+          "v1_report",
+          "v1_products_involved"
+        ],
+        "position": 1
+      },
+      {
+        "template": "default",
+        "short_name": "v1_adverse_event_details",
+        "label": "Adverse Event",
+        "components": [
+          {
+            "default_value": [
+              
+            ],
+            "label_inside_input": true,
+            "short_name": "names",
+            "add_button_label": "Add",
+            "label": "Enter Adverse Events",
+            "label_visible": true,
+            "components": [
+              
+            ],
+            "path": [
+              "v1_report",
+              "v1_adverse_event_details",
+              "names"
+            ],
+            "position": 1,
+            "validation": {
+              "short_name": "ae_events_add",
+              "required": false,
+              "label": "AE events add validation",
+              "maxlength": 200,
+              "scope": "value_in_collection",
+              "type": "validation"
+            },
+            "type": "TagsInput",
+            "placeholder_label": "Enter Adverse Event..."
+          },
+          {
+            "label_inside_input": true,
+            "short_name": "event_details_fieldset",
+            "label": "Adverse Event Details",
+            "label_visible": true,
+            "components": [
+              {
+                "label_inside_input": true,
+                "short_name": "start_date",
+                "label": "Start Date",
+                "label_visible": true,
+                "components": [
+                  
+                ],
+                "path": [
+                  "v1_report",
+                  "v1_adverse_event_details",
+                  "event_details_fieldset",
+                  "start_date"
+                ],
+                "position": 1,
+                "validation": {
+                  "short_name": "ae_start_date",
+                  "format": "date",
+                  "required": false,
+                  "label": "AE start date validation",
+                  "scope": "value",
+                  "type": "validation"
+                },
+                "type": "DatePicker",
+                "placeholder_label": "Start Date"
+              },
+              {
+                "label_inside_input": true,
+                "short_name": "company_aware_date",
+                "label": "When were you told about this report?",
+                "label_visible": true,
+                "components": [
+                  
+                ],
+                "path": [
+                  "v1_report",
+                  "v1_adverse_event_details",
+                  "event_details_fieldset",
+                  "company_aware_date"
+                ],
+                "position": 2,
+                "validation": {
+                  "short_name": "ae_company_aware_date",
+                  "format": "date",
+                  "required": false,
+                  "label": "AE company aware date validation",
+                  "scope": "value",
+                  "type": "validation"
+                },
+                "type": "DatePicker"
+              },
+              {
+                "label_inside_input": true,
+                "short_name": "description",
+                "label": "Additional Information",
+                "label_visible": true,
+                "components": [
+                  
+                ],
+                "path": [
+                  "v1_report",
+                  "v1_adverse_event_details",
+                  "event_details_fieldset",
+                  "description"
+                ],
+                "position": 3,
+                "validation": {
+                  "short_name": "ae_description",
+                  "required": false,
+                  "label": "AE description validation",
+                  "maxlength": 10000,
+                  "scope": "value",
+                  "type": "validation"
+                },
+                "type": "TextArea",
+                "placeholder_label": "If necessary, use this field to record all relevant information not captured by the other fields."
+              }
+            ],
+            "path": [
+              "v1_report",
+              "v1_adverse_event_details",
+              "event_details_fieldset"
+            ],
+            "position": 2,
+            "type": "Fieldset"
+          }
+        ],
+        "path": [
+          "v1_report",
+          "v1_adverse_event_details"
+        ],
+        "position": 2
+      },
+      {
+        "template": "default",
+        "short_name": "v1_patient_details",
+        "label": "Patient Details",
+        "components": [
+          {
+            "label_inside_input": true,
+            "short_name": "personal_data_grid",
+            "label": "Personal Data Grid",
+            "label_visible": true,
+            "components": [
+              {
+                "label_inside_input": true,
+                "short_name": "initials",
+                "label": "Initials",
+                "label_visible": true,
+                "components": [
+                  
+                ],
+                "path": [
+                  "v1_report",
+                  "v1_patient_details",
+                  "personal_data_grid",
+                  "initials"
+                ],
+                "position": 1,
+                "validation": {
+                  "short_name": "patient_initials",
+                  "required": false,
+                  "label": "Patient initials validation",
+                  "maxlength": 10,
+                  "scope": "value",
+                  "type": "validation"
+                },
+                "type": "Text",
+                "placeholder_label": "Initials"
+              },
+              {
+                "label_inside_input": true,
+                "short_name": "gender",
+                "label": "Gender",
+                "options": [
+                  {
+                    "value": "male",
+                    "label": "Male"
+                  },
+                  {
+                    "value": "female",
+                    "label": "Female"
+                  }
+                ],
+                "label_visible": true,
+                "components": [
+                  
+                ],
+                "path": [
+                  "v1_report",
+                  "v1_patient_details",
+                  "personal_data_grid",
+                  "gender"
+                ],
+                "position": 2,
+                "validation": {
+                  "scope": "value",
+                  "required": false,
+                  "type": "validation",
+                  "short_name": "non_required",
+                  "label": "Non required validation"
+                },
+                "type": "RadioButtons",
+                "placeholder_label": ""
+              }
+            ],
+            "path": [
+              "v1_report",
+              "v1_patient_details",
+              "personal_data_grid"
+            ],
+            "position": 1,
+            "type": "Grid"
+          },
+          {
+            "label_inside_input": true,
+            "short_name": "birth_date_grid",
+            "label": "Date of Birth Grid",
+            "label_visible": true,
+            "components": [
+              {
+                "label_inside_input": true,
+                "short_name": "birth_date_known",
+                "label": "Birth Date known?",
+                "label_visible": true,
+                "components": [
+                  
+                ],
+                "path": [
+                  "v1_report",
+                  "v1_patient_details",
+                  "birth_date_grid",
+                  "birth_date_known"
+                ],
+                "position": 1,
+                "validation": {
+                  "scope": "value",
+                  "required": false,
+                  "type": "validation",
+                  "short_name": "non_required",
+                  "label": "Non required validation"
+                },
+                "type": "Toggle",
+                "options": [
+                  {
+                    "value": true,
+                    "label": "Yes"
+                  },
+                  {
+                    "value": false,
+                    "label": "No"
+                  }
+                ]
+              },
+              {
+                "label_inside_input": true,
+                "short_name": "birth_date",
+                "triggered_by": "this.v1_report.v1_patient_details.birth_date_grid.birth_date_known",
+                "label": "Birth Date",
+                "label_visible": true,
+                "components": [
+                  
+                ],
+                "path": [
+                  "v1_report",
+                  "v1_patient_details",
+                  "birth_date_grid",
+                  "birth_date"
+                ],
+                "position": 2,
+                "validation": {
+                  "short_name": "birth_date",
+                  "format": "date",
+                  "required": false,
+                  "label": "Birth date validation",
+                  "scope": "value",
+                  "type": "validation"
+                },
+                "type": "DatePicker",
+                "placeholder_label": "Birth Date"
+              }
+            ],
+            "path": [
+              "v1_report",
+              "v1_patient_details",
+              "birth_date_grid"
+            ],
+            "position": 2,
+            "type": "Grid"
+          },
+          {
+            "label_inside_input": true,
+            "short_name": "age_grid",
+            "triggered_by": "!this.v1_report.v1_patient_details.birth_date_grid.birth_date_known",
+            "label": "Age Grid",
+            "label_visible": true,
+            "components": [
+              {
+                "label_inside_input": true,
+                "short_name": "age",
+                "label": "Age",
+                "label_visible": true,
+                "components": [
+                  
+                ],
+                "path": [
+                  "v1_report",
+                  "v1_patient_details",
+                  "age_grid",
+                  "age"
+                ],
+                "position": 1,
+                "validation": {
+                  "short_name": "age",
+                  "min": 1,
+                  "max": 150,
+                  "required": false,
+                  "label": "Age validation",
+                  "scope": "value",
+                  "type": "validation"
+                },
+                "type": "Number",
+                "placeholder_label": "Age"
+              },
+              {
+                "default_value": "years",
+                "label_inside_input": true,
+                "short_name": "age_unit",
+                "label": "Unit",
+                "options": [
+                  {
+                    "value": "years",
+                    "label": "Years"
+                  },
+                  {
+                    "value": "months",
+                    "label": "Months"
+                  },
+                  {
+                    "value": "days",
+                    "label": "Days"
+                  }
+                ],
+                "label_visible": false,
+                "components": [
+                  
+                ],
+                "path": [
+                  "v1_report",
+                  "v1_patient_details",
+                  "age_grid",
+                  "age_unit"
+                ],
+                "position": 2,
+                "validation": {
+                  "scope": "value",
+                  "required": false,
+                  "type": "validation",
+                  "short_name": "non_required",
+                  "label": "Non required validation"
+                },
+                "type": "Select",
+                "placeholder_label": "Unit"
+              }
+            ],
+            "position": 3,
+            "path": [
+              "v1_report",
+              "v1_patient_details",
+              "age_grid"
+            ],
+            "type": "Grid"
+          }
+        ],
+        "path": [
+          "v1_report",
+          "v1_patient_details"
+        ],
+        "position": 3
+      },
+      {
+        "template": "default",
+        "short_name": "v1_reporter_details",
+        "label": "Contact Details",
+        "components": [
+          {
+            "label_inside_input": true,
+            "short_name": "personal_information_fieldset",
+            "label": "Personal Information",
+            "label_visible": true,
+            "components": [
+              {
+                "label_inside_input": true,
+                "short_name": "names_grid",
+                "label": "Names Grid",
+                "label_visible": true,
+                "components": [
+                  {
+                    "label_inside_input": true,
+                    "short_name": "first_name",
+                    "label": "First name",
+                    "label_visible": true,
+                    "components": [
+                      
+                    ],
+                    "path": [
+                      "v1_report",
+                      "v1_reporter_details",
+                      "personal_information_fieldset",
+                      "names_grid",
+                      "first_name"
+                    ],
+                    "position": 1,
+                    "validation": {
+                      "short_name": "first_name",
+                      "required": true,
+                      "label": "First name validation",
+                      "maxlength": 35,
+                      "scope": "value",
+                      "type": "validation"
+                    },
+                    "type": "Text",
+                    "placeholder_label": "Jane"
+                  },
+                  {
+                    "label_inside_input": true,
+                    "short_name": "surname",
+                    "label": "Surname",
+                    "label_visible": true,
+                    "components": [
+                      
+                    ],
+                    "path": [
+                      "v1_report",
+                      "v1_reporter_details",
+                      "personal_information_fieldset",
+                      "names_grid",
+                      "surname"
+                    ],
+                    "position": 2,
+                    "validation": {
+                      "short_name": "surname",
+                      "required": true,
+                      "label": "Surname validation",
+                      "maxlength": 50,
+                      "scope": "value",
+                      "type": "validation"
+                    },
+                    "type": "Text",
+                    "placeholder_label": "Doe"
+                  }
+                ],
+                "path": [
+                  "v1_report",
+                  "v1_reporter_details",
+                  "personal_information_fieldset",
+                  "names_grid"
+                ],
+                "type": "Grid"
+              }
+            ],
+            "path": [
+              "v1_report",
+              "v1_reporter_details",
+              "personal_information_fieldset"
+            ],
+            "position": 1,
+            "type": "Fieldset"
+          },
+          {
+            "label_inside_input": true,
+            "short_name": "consent_to_contact",
+            "label": "Permission to contact?",
+            "options": [
+              {
+                "value": true,
+                "label": "Yes"
+              },
+              {
+                "value": false,
+                "label": "No"
+              }
+            ],
+            "label_visible": true,
+            "components": [
+              
+            ],
+            "path": [
+              "v1_report",
+              "v1_reporter_details",
+              "consent_to_contact"
+            ],
+            "position": 2,
+            "validation": {
+              "scope": "value",
+              "required": false,
+              "type": "validation",
+              "short_name": "non_required",
+              "label": "Non required validation"
+            },
+            "type": "Toggle",
+            "placeholder_label": ""
+          },
+          {
+            "label_inside_input": true,
+            "short_name": "reporter_details_fieldset",
+            "triggered_by": "this.v1_report.v1_reporter_details.consent_to_contact",
+            "label": "Contact Information",
+            "label_visible": true,
+            "components": [
+              {
+                "label_inside_input": true,
+                "short_name": "address_line_1",
+                "label": "Address line 1",
+                "label_visible": true,
+                "components": [
+                  
+                ],
+                "path": [
+                  "v1_report",
+                  "v1_reporter_details",
+                  "reporter_details_fieldset",
+                  "address_line_1"
+                ],
+                "position": 1,
+                "validation": {
+                  "short_name": "address",
+                  "required": false,
+                  "label": "Address validation",
+                  "maxlength": 49,
+                  "scope": "value",
+                  "type": "validation"
+                },
+                "type": "Text",
+                "placeholder_label": "123 Example Street"
+              },
+              {
+                "label_inside_input": true,
+                "short_name": "address_line_2",
+                "label": "Address line 2",
+                "label_visible": true,
+                "components": [
+                  
+                ],
+                "path": [
+                  "v1_report",
+                  "v1_reporter_details",
+                  "reporter_details_fieldset",
+                  "address_line_2"
+                ],
+                "position": 2,
+                "validation": {
+                  "short_name": "address",
+                  "required": false,
+                  "label": "Address validation",
+                  "maxlength": 49,
+                  "scope": "value",
+                  "type": "validation"
+                },
+                "type": "Text",
+                "placeholder_label": ""
+              },
+              {
+                "label_inside_input": true,
+                "short_name": "address_grid",
+                "label": "Address Grid",
+                "label_visible": true,
+                "components": [
+                  {
+                    "label_inside_input": true,
+                    "short_name": "town",
+                    "label": "Town",
+                    "label_visible": true,
+                    "components": [
+                      
+                    ],
+                    "path": [
+                      "v1_report",
+                      "v1_reporter_details",
+                      "reporter_details_fieldset",
+                      "address_grid",
+                      "town"
+                    ],
+                    "position": 1,
+                    "validation": {
+                      "short_name": "town",
+                      "required": false,
+                      "label": "Town validation",
+                      "maxlength": 35,
+                      "scope": "value",
+                      "type": "validation"
+                    },
+                    "type": "Text",
+                    "placeholder_label": "Example Town"
+                  },
+                  {
+                    "label_inside_input": true,
+                    "short_name": "county",
+                    "label": "County \/ State",
+                    "label_visible": true,
+                    "components": [
+                      
+                    ],
+                    "path": [
+                      "v1_report",
+                      "v1_reporter_details",
+                      "reporter_details_fieldset",
+                      "address_grid",
+                      "county"
+                    ],
+                    "position": 2,
+                    "validation": {
+                      "short_name": "county",
+                      "required": false,
+                      "label": "County validation",
+                      "maxlength": 40,
+                      "scope": "value",
+                      "type": "validation"
+                    },
+                    "type": "Text",
+                    "placeholder_label": "Example State"
+                  }
+                ],
+                "path": [
+                  "v1_report",
+                  "v1_reporter_details",
+                  "reporter_details_fieldset",
+                  "address_grid"
+                ],
+                "position": 3,
+                "type": "Grid"
+              },
+              {
+                "label_inside_input": true,
+                "short_name": "zip_country_grid",
+                "label": "Zip and Country Grid",
+                "label_visible": true,
+                "components": [
+                  {
+                    "label_inside_input": true,
+                    "short_name": "postcode",
+                    "label": "Postal\/ZIP code",
+                    "label_visible": true,
+                    "components": [
+                      
+                    ],
+                    "path": [
+                      "v1_report",
+                      "v1_reporter_details",
+                      "reporter_details_fieldset",
+                      "zip_country_grid",
+                      "postcode"
+                    ],
+                    "position": 1,
+                    "validation": {
+                      "short_name": "postcode",
+                      "required": false,
+                      "label": "Postcode validation",
+                      "maxlength": 15,
+                      "scope": "value",
+                      "type": "validation"
+                    },
+                    "type": "Text",
+                    "placeholder_label": "39487205"
+                  },
+                  {
+                    "label_inside_input": true,
+                    "short_name": "country",
+                    "label": "Country",
+                    "label_visible": true,
+                    "components": [
+                      
+                    ],
+                    "path": [
+                      "v1_report",
+                      "v1_reporter_details",
+                      "reporter_details_fieldset",
+                      "zip_country_grid",
+                      "country"
+                    ],
+                    "position": 2,
+                    "type": "Text",
+                    "placeholder_label": "United States"
+                  }
+                ],
+                "path": [
+                  "v1_report",
+                  "v1_reporter_details",
+                  "reporter_details_fieldset",
+                  "zip_country_grid"
+                ],
+                "position": 4,
+                "type": "Grid"
+              },
+              {
+                "label_inside_input": true,
+                "short_name": "email_address",
+                "label": "Email Address",
+                "label_visible": true,
+                "components": [
+                  
+                ],
+                "path": [
+                  "v1_report",
+                  "v1_reporter_details",
+                  "reporter_details_fieldset",
+                  "email_address"
+                ],
+                "position": 5,
+                "validation": {
+                  "short_name": "email",
+                  "format": "email",
+                  "required": false,
+                  "label": "Email validation",
+                  "maxlength": 254,
+                  "scope": "value",
+                  "type": "validation"
+                },
+                "type": "Text",
+                "placeholder_label": "example@examplemail.com"
+              },
+              {
+                "label_inside_input": true,
+                "short_name": "telephone_number",
+                "label": "Phone Number",
+                "label_visible": true,
+                "components": [
+                  
+                ],
+                "path": [
+                  "v1_report",
+                  "v1_reporter_details",
+                  "reporter_details_fieldset",
+                  "telephone_number"
+                ],
+                "position": 6,
+                "validation": {
+                  "short_name": "telephone_number",
+                  "required": false,
+                  "label": "Telephone number validation",
+                  "maxlength": 15,
+                  "scope": "value",
+                  "type": "validation"
+                },
+                "type": "Text",
+                "placeholder_label": "01234 567891"
+              }
+            ],
+            "position": 3,
+            "path": [
+              "v1_report",
+              "v1_reporter_details",
+              "reporter_details_fieldset"
+            ],
+            "type": "Fieldset"
+          }
+        ],
+        "path": [
+          "v1_report",
+          "v1_reporter_details"
+        ],
+        "position": 4
+      }
+    ],
+    "short_name": "v1_report",
+    "label": "Log a new report"
+  },
+  "initial_data": {
+    "v1_report": {
+      "v1_products_involved": {
+        "product_names": [
+          
+        ]
+      },
+      "v1_reporter_details": {
+        "consent_to_contact": null,
+        "reporter_details_fieldset": {
+          "address_line_2": null,
+          "telephone_number": null,
+          "address_grid": {
+            "town": null,
+            "county": null
+          },
+          "zip_country_grid": {
+            "country": null,
+            "postcode": null
+          },
+          "email_address": null,
+          "address_line_1": null
+        },
+        "personal_information_fieldset": {
+          "names_grid": {
+            "first_name": null,
+            "surname": null
+          }
+        }
+      },
+      "v1_patient_details": {
+        "personal_data_grid": {
+          "gender": null,
+          "initials": null
+        },
+        "birth_date_grid": {
+          "birth_date": null,
+          "birth_date_known": null
+        },
+        "age_grid": {
+          "age": null,
+          "age_unit": "years"
+        }
+      },
+      "v1_adverse_event_details": {
+        "event_details_fieldset": {
+          "company_aware_date": null,
+          "start_date": null,
+          "description": null
+        },
+        "names": [
+          
+        ]
+      }
+    }
+  }
+}
