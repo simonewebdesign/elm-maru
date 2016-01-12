@@ -9,6 +9,8 @@ defmodule ElmMaru.Router.Homepage do
   use Maru.Router
 
   get "/api" do
+    header("Access-Control-Allow-Origin", "*")
+
     {:ok, binary} = File.read("lib/api-response.json")
     result = binary |> Poison.decode!
 
