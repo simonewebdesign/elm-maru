@@ -1,5 +1,9 @@
-/_build
-/cover
-/deps
-erl_crash.dump
-*.ez
+# Server (Elixir)
+server/_build
+server/cover
+server/deps
+server/erl_crash.dump
+server/*.ez
+
+# Client (Elm)
+client/elm-stuff
