@@ -11,25 +11,18 @@ import Task exposing (Task, andThen, onError)
 
 -- MODEL
 
--- Represents the entire JSON configuration object, which looks like:
---{ "configuration": {
---    ...
---    "sections": [
---      ...
---      { "short_name": "products_involved",
---        "label": "Products Involved",
---        "components": [
---          ...
---          { "short_name": "product_names",
---            "label": "Enter Product Names",
---            ...
---          }
---          ...
-type alias ModelConfiguration =
-  { configuration : Model
+--type alias Model =
+--  { configuration : Configuration
+--  , error : String
+--  }
+
+
+-- Represents the entire JSON configuration object
+type alias MainConfiguration =
+  { configuration : Configuration
   }
 
-type alias Model =
+type alias Configuration =
   { sections : List Component
   }
 
@@ -38,22 +31,21 @@ type alias Component =
   , label : String
   }
 
-initialModel : Model
-initialModel =
+initialConfiguration : Configuration
+initialConfiguration =
   { sections = []
   }
 
 
-
 -- The first request has to be decoded.
-modelConfigurationDecoder : JSON.Decoder ModelConfiguration
+modelConfigurationDecoder : JSON.Decoder MainConfiguration
 modelConfigurationDecoder =
-  JSON.object1 ModelConfiguration ("configuration" := modelDecoder)
+  JSON.object1 MainConfiguration ("configuration" := modelDecoder)
 
 
-modelDecoder : JSON.Decoder Model
+modelDecoder : JSON.Decoder Configuration
 modelDecoder =
-  JSON.object1 Model
+  JSON.object1 Configuration
     ("sections" := componentsListDecoder)
 
 
@@ -75,19 +67,19 @@ componentDecoder =
 -- These are all the possible actions that can change our application state.
 type Action
   = NoOp
-  | SetModel Model
+  | SetConfiguration Configuration
   --| SetError String
 
 
 -- The only purpose of the update function is to step the model forward.
 -- This can be done only via an Action.
-update : Action -> Model -> Model
+update : Action -> Configuration -> Configuration
 update action model =
   case action of
     NoOp ->
       model
 
-    SetModel model' ->
+    SetConfiguration model' ->
       model'
 
     --SetError error ->
@@ -102,8 +94,8 @@ main =
 
 
 -- This is where all the state lives.
-state : Signal Model
-state = Signal.foldp update initialModel actions.signal
+state : Signal Configuration
+state = Signal.foldp update initialConfiguration actions.signal
 
 
 -- Send messages to this mailbox's address to step the state forward.
@@ -113,25 +105,25 @@ actions =
 
 
 -- The first request.
-getModel : Task Http.Error ModelConfiguration
-getModel =
+getConfiguration : Task Http.Error MainConfiguration
+getConfiguration =
   Http.get modelConfigurationDecoder "http://localhost:8880/api"
 
 
 -- To actually send the first request, it needs to pass through a port.
 port runner : Task Http.Error ()
 port runner =
-  getModel
-  `andThen` (\{configuration} -> Signal.send actions.address (SetModel configuration))
+  getConfiguration
+  `andThen` (\{configuration} -> Signal.send actions.address (SetConfiguration configuration))
   --`onError` (\error -> Signal.send actions.address (SetError (toString error)))
-  --`andThen` (SetModel >> Signal.send actions.address)
+  --`andThen` (SetConfiguration >> Signal.send actions.address)
   --`onError` (SetError >> Signal.send actions.address)
 
 
 -- VIEW
 
 -- The main view for the application.
-view : Model -> Html
+view : Configuration -> Html
 view model =
   p []
   [ Element.show model |> Html.fromElement
