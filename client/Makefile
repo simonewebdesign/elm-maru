@@ -27,9 +27,6 @@ bin:
 interop:
 	mkdir -p interop
 
-interop/translation-names.js: src/*.elm src/**/*.elm
-	scripts/extract_translations.sh
-
 bin/devd:
 	curl ${DEVD_URL} -L -o $@.tgz
 	tar -xzf $@.tgz -C bin/ --strip 1
