@@ -11,10 +11,10 @@ import Task exposing (Task, andThen, onError)
 
 -- MODEL
 
---type alias Model =
---  { configuration : Configuration
---  , error : String
---  }
+type alias Model =
+  { configuration : Configuration
+  , error : String
+  }
 
 
 -- Represents the entire JSON configuration object
@@ -31,9 +31,10 @@ type alias Component =
   , label : String
   }
 
-initialConfiguration : Configuration
-initialConfiguration =
-  { sections = []
+initialModel : Model
+initialModel =
+  { configuration = { sections = [] }
+  , error = ""
   }
 
 
@@ -68,22 +69,22 @@ componentDecoder =
 type Action
   = NoOp
   | SetConfiguration Configuration
-  --| SetError String
+  | SetError String
 
 
 -- The only purpose of the update function is to step the model forward.
 -- This can be done only via an Action.
-update : Action -> Configuration -> Configuration
+update : Action -> Model -> Model
 update action model =
   case action of
     NoOp ->
       model
 
-    SetConfiguration model' ->
-      model'
+    SetConfiguration config ->
+      { model | configuration = config }
 
-    --SetError error ->
-    --  { model | error = error }
+    SetError error ->
+      { model | error = error }
 
 -- SIGNALS
 
@@ -94,8 +95,8 @@ main =
 
 
 -- This is where all the state lives.
-state : Signal Configuration
-state = Signal.foldp update initialConfiguration actions.signal
+state : Signal Model
+state = Signal.foldp update initialModel actions.signal
 
 
 -- Send messages to this mailbox's address to step the state forward.
@@ -115,7 +116,7 @@ port runner : Task Http.Error ()
 port runner =
   getConfiguration
   `andThen` (\{configuration} -> Signal.send actions.address (SetConfiguration configuration))
-  --`onError` (\error -> Signal.send actions.address (SetError (toString error)))
+  `onError` (\error -> Signal.send actions.address (SetError (toString error)))
   --`andThen` (SetConfiguration >> Signal.send actions.address)
   --`onError` (SetError >> Signal.send actions.address)
 
@@ -123,7 +124,7 @@ port runner =
 -- VIEW
 
 -- The main view for the application.
-view : Configuration -> Html
+view : Model -> Html
 view model =
   p []
   [ Element.show model |> Html.fromElement
