@@ -37,6 +37,8 @@ initialModel =
   }
 
 
+-- DECODERS
+
 -- The first request has to be decoded.
 modelConfigurationDecoder : JSON.Decoder MainConfiguration
 modelConfigurationDecoder =
@@ -59,7 +61,6 @@ componentDecoder =
   JSON.object2 Component
     ("label" := JSON.string)
     ("short_name" := JSON.string)
-
 
 
 -- UPDATE
@@ -85,6 +86,7 @@ update action model =
     SetError error ->
       { model | error = error }
 
+
 -- SIGNALS
 
 -- The application's entry point.
@@ -109,6 +111,10 @@ getSections : Task Http.Error MainConfiguration
 getSections =
   Http.get modelConfigurationDecoder "http://localhost:8880/api"
 
+
+-- Get a record that has a 'sections' property, and extract its value.
+-- Useful because we want to keep the Model simple by not having a
+-- 'configuration' property.
 extractSections : { configuration | sections : List Component } -> List Component
 extractSections {sections} =
   sections
