@@ -7,14 +7,13 @@ import Html exposing (..)
 import Http
 import Json.Decode as JSON exposing ((:=))
 import Task exposing (Task, andThen, onError)
-
--- Components
 import Components.Section
+import Components.Text
 
 -- MODEL
 
 type alias Model =
-  { sections : List Component
+  { sections : List Components.Section.Model
   , error : String
   }
 
@@ -24,12 +23,7 @@ type alias MainConfiguration =
   }
 
 type alias Configuration =
-  { sections : List Component
-  }
-
-type alias Component =
-  { short_name : String
-  , label : String
+  { sections : List Components.Section.Model
   }
 
 initialModel : Model
@@ -53,16 +47,10 @@ modelDecoder =
     ("sections" := componentsListDecoder)
 
 
-componentsListDecoder : JSON.Decoder (List Component)
+componentsListDecoder : JSON.Decoder (List Components.Section.Model)
 componentsListDecoder =
-  JSON.list componentDecoder
+  JSON.list Components.Section.decoder
 
-
-componentDecoder : JSON.Decoder Component
-componentDecoder =
-  JSON.object2 Component
-    ("label" := JSON.string)
-    ("short_name" := JSON.string)
 
 
 -- UPDATE
@@ -70,7 +58,7 @@ componentDecoder =
 -- These are all the possible actions that can change our application state.
 type Action
   = NoOp
-  | SetSections (List Component)
+  | SetSections (List Components.Section.Model)
   | SetError String
 
 
@@ -117,7 +105,7 @@ getSections =
 -- Get a record that has a 'sections' property, and extract its value.
 -- Useful because we want to keep the Model simple by not having a
 -- 'configuration' property.
-extractSections : { configuration | sections : List Component } -> List Component
+extractSections : { configuration | sections : List Components.Section.Model } -> List Components.Section.Model
 extractSections {sections} =
   sections
 
