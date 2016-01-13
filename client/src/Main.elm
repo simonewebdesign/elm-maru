@@ -12,10 +12,9 @@ import Task exposing (Task, andThen, onError)
 -- MODEL
 
 type alias Model =
-  { configuration : Configuration
+  { sections : List Component
   , error : String
   }
-
 
 -- Represents the entire JSON configuration object
 type alias MainConfiguration =
@@ -33,7 +32,7 @@ type alias Component =
 
 initialModel : Model
 initialModel =
-  { configuration = { sections = [] }
+  { sections = []
   , error = ""
   }
 
@@ -68,7 +67,7 @@ componentDecoder =
 -- These are all the possible actions that can change our application state.
 type Action
   = NoOp
-  | SetConfiguration Configuration
+  | SetSections (List Component)
   | SetError String
 
 
@@ -80,8 +79,8 @@ update action model =
     NoOp ->
       model
 
-    SetConfiguration config ->
-      { model | configuration = config }
+    SetSections sections ->
+      { model | sections = sections }
 
     SetError error ->
       { model | error = error }
@@ -106,16 +105,20 @@ actions =
 
 
 -- The first request.
-getConfiguration : Task Http.Error MainConfiguration
-getConfiguration =
+getSections : Task Http.Error MainConfiguration
+getSections =
   Http.get modelConfigurationDecoder "http://localhost:8880/api"
+
+extractSections : { configuration | sections : List Component } -> List Component
+extractSections {sections} =
+  sections
 
 
 -- To actually send the first request, it needs to pass through a port.
 port runner : Task Http.Error ()
 port runner =
-  getConfiguration
-  `andThen` (\{configuration} -> Signal.send actions.address (SetConfiguration configuration))
+  getSections
+  `andThen` (\{configuration} -> Signal.send actions.address (SetSections (extractSections configuration)))
   `onError` (\error -> Signal.send actions.address (SetError (toString error)))
   --`andThen` (SetConfiguration >> Signal.send actions.address)
   --`onError` (SetError >> Signal.send actions.address)
