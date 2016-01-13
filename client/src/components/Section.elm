@@ -7,8 +7,8 @@ import Components
 import Components.Text
 
 type alias Model =
-  { short_name : String
-  , label : String
+  { label : String
+  , short_name : String
   , components : List Components.Model
   }
 
@@ -18,8 +18,7 @@ decoder =
   JSON.object3 Model
     ("label" := JSON.string)
     ("short_name" := JSON.string)
-    --("components" := Components.genericListDecoder)
-    ("components" := (JSON.list Components.Text.decoder))
+    ("components" := JSON.list Components.Text.decoder)
 
 
 view : Model -> Html
