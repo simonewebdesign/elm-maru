@@ -4,7 +4,8 @@
     "repository": "https://github.com/simonewebdesign/elm-maru.git",
     "license": "BSD3",
     "source-directories": [
-        "src"
+        "src",
+        "src/components"
     ],
     "exposed-modules": [],
     "dependencies": {

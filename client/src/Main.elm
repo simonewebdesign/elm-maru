@@ -7,7 +7,7 @@ import Html exposing (..)
 import Http
 import Json.Decode as JSON exposing ((:=))
 import Task exposing (Task, andThen, onError)
-
+import Section
 
 -- MODEL
 
@@ -135,6 +135,8 @@ port runner =
 -- The main view for the application.
 view : Model -> Html
 view model =
-  p []
-  [ Element.show model |> Html.fromElement
-  ]
+  let
+    sections = List.map Section.view model.sections
+    pContent = sections ++ [ Element.show model |> Html.fromElement ]
+  in
+    p [] pContent
