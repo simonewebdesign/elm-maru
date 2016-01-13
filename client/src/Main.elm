@@ -31,7 +31,6 @@ type alias ModelConfiguration =
 
 type alias Model =
   { sections : List Component
-  , error : String
   }
 
 type alias Component =
@@ -42,7 +41,6 @@ type alias Component =
 initialModel : Model
 initialModel =
   { sections = []
-  , error = ""
   }
 
 
@@ -55,9 +53,8 @@ modelConfigurationDecoder =
 
 modelDecoder : JSON.Decoder Model
 modelDecoder =
-  JSON.object2 Model
+  JSON.object1 Model
     ("sections" := componentsListDecoder)
-    ("error" := JSON.string)
 
 
 componentsListDecoder : JSON.Decoder (List Component)
@@ -79,7 +76,7 @@ componentDecoder =
 type Action
   = NoOp
   | SetModel Model
-  | SetError String
+  --| SetError String
 
 
 -- The only purpose of the update function is to step the model forward.
@@ -93,8 +90,8 @@ update action model =
     SetModel model' ->
       model'
 
-    SetError error ->
-      { model | error = error }
+    --SetError error ->
+    --  { model | error = error }
 
 -- SIGNALS
 
@@ -126,7 +123,7 @@ port runner : Task Http.Error ()
 port runner =
   getModel
   `andThen` (\{configuration} -> Signal.send actions.address (SetModel configuration))
-  `onError` (\error -> Signal.send actions.address (SetError (toString error)))
+  --`onError` (\error -> Signal.send actions.address (SetError (toString error)))
   --`andThen` (SetModel >> Signal.send actions.address)
   --`onError` (SetError >> Signal.send actions.address)
 
