@@ -3,18 +3,21 @@ module Components.Section where
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Json.Decode as JSON exposing ((:=))
+import Components
 
 type alias Model =
   { short_name : String
   , label : String
+  , components : List Components.Model
   }
 
 
 decoder : JSON.Decoder Model
 decoder =
-  JSON.object2 Model
+  JSON.object3 Model
     ("label" := JSON.string)
     ("short_name" := JSON.string)
+    ("components" := Components.genericListDecoder)
 
 
 --view : Html

@@ -8,7 +8,7 @@ import Http
 import Json.Decode as JSON exposing ((:=))
 import Task exposing (Task, andThen, onError)
 import Components.Section
-import Components.Text
+--import Components.Text
 
 -- MODEL
 
