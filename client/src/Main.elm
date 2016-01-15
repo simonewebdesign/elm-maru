@@ -102,22 +102,15 @@ getSections =
   Http.get modelConfigurationDecoder "http://localhost:8880/api"
 
 
--- Get a record that has a 'sections' property, and extract its value.
--- Useful because we want to keep the Model simple by not having a
--- 'configuration' property.
-extractSections : { configuration | sections : List Components.Section.Model } -> List Components.Section.Model
-extractSections {sections} =
-  sections
-
-
 -- To actually send the first request, it needs to pass through a port.
 port runner : Task Http.Error ()
 port runner =
-  getSections
-  `andThen` (\{configuration} -> Signal.send actions.address (SetSections (extractSections configuration)))
-  `onError` (\error -> Signal.send actions.address (SetError (toString error)))
-  --`andThen` (SetConfiguration >> Signal.send actions.address)
-  --`onError` (SetError >> Signal.send actions.address)
+  let
+    extractSections {sections} = sections
+  in
+    getSections
+    `andThen` (\{configuration} -> Signal.send actions.address (SetSections (extractSections configuration)))
+    `onError` (\error -> Signal.send actions.address (SetError (toString error)))
 
 
 -- VIEW
